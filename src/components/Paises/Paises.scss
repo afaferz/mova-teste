@@ -1,0 +1,32 @@
+.paises-container{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  min-height: 181px;
+  height: auto;
+  justify-content: space-between;
+  padding: 0 2em;
+  margin: 3.5em 0;
+
+  a{
+    cursor: pointer;
+    margin: .5em auto;
+    img{
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    img:nth-child(even){
+      margin: 0 1.5em;
+    }
+  }
+
+ 
+}
+
+@media screen and (max-width: 600px) {
+  .paises-container{
+    flex-direction: column;
+    margin: 2.5em 0;
+  }
+}
