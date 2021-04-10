@@ -16,7 +16,7 @@
 
 <script>
 import Filtro from '../../components/Filtro/Filtro.vue'
-import Paises from '../../components/Paises/Paises.vue';
+import Paises from '../../components/Bandeiras/Bandeiras.vue';
 
 export default {
   name: 'Home',

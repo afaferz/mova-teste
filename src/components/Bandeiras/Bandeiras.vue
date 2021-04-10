@@ -1,5 +1,6 @@
 <template>
-  <div class="paises-container">
+  <div class="bandeiras-container">
+     <!-- Criar um v-for para gerar os elementos na tela (Passar com o $emit o resultado obtido para uma prop) -->
     <a href="#brasil">
       <img src="@/assets/bandeiras/bandeiraBrasil.svg"/>
     </a>
@@ -15,9 +16,10 @@
 <script>
 export default {
   name: 'Países',
+  props: ['flags'],
 }
 </script>
 
 <style lang="scss">
-@import './Paises.scss';
+@import './Bandeiras.scss';
 </style>

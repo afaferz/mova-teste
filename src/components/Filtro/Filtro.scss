@@ -3,6 +3,7 @@
 .filtro-container{
   display: flex;
   flex-direction: row;
+  position: relative;
   
   @media screen and (max-width: 600px) {
     flex-direction: column;
@@ -37,9 +38,22 @@
       border-radius: 0px;
       border-top: 0px;
       box-sizing: border-box;
+      cursor: pointer;
       transform: rotate(0deg);
-
     }
+  }
+
+  .botao-pesquisa{
+    align-self: center;
+    background: #6D2080;
+    border-radius: 10px;
+    color: #FFF;
+    font: $font-400;
+    height: 36px;
+    position: absolute;
+    right: 10%;
+    text-transform: uppercase;
+    width: 156px;
   }
 }
 
