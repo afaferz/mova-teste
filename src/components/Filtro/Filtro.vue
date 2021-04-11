@@ -114,11 +114,13 @@ export default {
         const _SUB_OPTIONS = this.opcaoInput1.subOptions.find(elemento=>{
           return elemento.valor == params;
         });
+        console.log(this.opcaoInput1)
   
         this.opcaoInput2 = _SUB_OPTIONS;
+        this.opcaoInput1.subOptions = SUB_OPTIONS.Regiao;
       }
       else{
-        this.opcaoInput2 =  {opcao: 'A', valor: ''};
+        this.opcaoInput2 =  {opcao: '', valor: ''};
       }
     }
   },
@@ -151,9 +153,11 @@ export default {
       .then(({data})=>{
 
         // Default
-        this.opcaoInput1.subOptions  = data.map(pais=>{
-          return {opcao: pais.name, valor: pais.alpha3Code};
-        })
+        if(!this.$route.params.regiao){
+          this.opcaoInput1.subOptions  = data.map(pais=>{
+            return {opcao: pais.name, valor: pais.alpha3Code};
+          })
+        }
         
         // Capital
         this.filtro.options[1].subOptions = data.map(pais=>{
@@ -175,7 +179,7 @@ export default {
           const _REGIAO = this.filtro.options.find((elemento)=>{
             return elemento.opcao == 'Regiao';
           });
-
+          console.log(_REGIAO)
           this.opcaoInput1 = _REGIAO;
         }
       })
@@ -192,6 +196,7 @@ export default {
         return elemento.opcao == 'Regiao';
       })
       this.opcaoInput1 = REGIAO;
+      this.opcaoInput1.subOptions = SUB_OPTIONS.Regiao;
     }
   }
 }
