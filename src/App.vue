@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <BaseHeader />
-    <router-view />
+    
+      <router-view :key="$route.fullPath" />
+   
   </div>
 </template>
 
@@ -12,7 +14,15 @@ export default{
   name: 'App',
   components: {
     BaseHeader,
-  }
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(to) {
+        document.title = to.meta.title || 'Mova - Soluções Financeiras';
+      }
+    },
+    }
 }
 </script>
 

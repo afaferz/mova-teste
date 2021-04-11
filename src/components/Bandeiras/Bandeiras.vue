@@ -1,23 +1,21 @@
 <template>
-  <div class="bandeiras-container">
-     <!-- Criar um v-for para gerar os elementos na tela (Passar com o $emit o resultado obtido para uma prop) -->
-    <a href="#brasil">
-      <img src="@/assets/bandeiras/bandeiraBrasil.svg"/>
-    </a>
-    <a href="#alemanha">
-      <img src="@/assets/bandeiras/bandeiraAlemanha.svg"/>
-      </a>
-    <a href="#japao">
-      <img src="@/assets/bandeiras/bandeiraJapao.svg"/>
-    </a>
+  <div>
+    <div class="bandeiras-container">
+      <router-link 
+        :to="{name: 'País', params: { pais: pais.alpha3Code.toLowerCase() }}"
+      >
+        <img :src="pais.flag"/>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Países',
-  props: ['flags'],
+  name: 'Bandeiras',
+  props: ['pais'],
 }
+
 </script>
 
 <style lang="scss">

@@ -1,0 +1,43 @@
+@import '@/scss/_variables.scss';
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;  
+
+  .opcao {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    background-color: #FFF;
+    color: $cor-texto-principal;
+    cursor: pointer;
+    font-weight: 500;
+    height: 34px;
+    margin: 0px .5em;
+    width: 34px;
+    @media screen and (max-width: 600px) {
+      margin: .5em;
+    }
+    
+    &:hover {
+      background-color: $cor-principal;
+      color: #FFF;
+      z-index: 3;
+    }
+    &.current {
+      cursor: default;
+      color: #FFF;
+      background-color: $cor-principal;
+      z-index: 2;
+    }
+  }
+
+  .opcao.ant,.opcao.prox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 28px;
+    align-self: center;
+  }
+}

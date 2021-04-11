@@ -1,5 +1,5 @@
 .conteudo-principal{
-  height: 100vh;
+  height: auto;
   padding: 2em 0;
 }
 
@@ -7,4 +7,9 @@
   margin: 0 auto;
   max-width: 1192px;
   width: auto;
+}
+.section-paises{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

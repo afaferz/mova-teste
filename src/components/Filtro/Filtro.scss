@@ -5,9 +5,7 @@
   flex-direction: row;
   position: relative;
   
-  @media screen and (max-width: 600px) {
-    flex-direction: column;
-  }
+
 
   // Input
   .v-select.input-filtro.vs--single.vs--searchable{
@@ -57,3 +55,16 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .filtro-container{
+    flex-direction: column;
+    .v-select.input-filtro.vs--single.vs--searchable:first-child{
+      margin-bottom: 1em;
+    }
+    .botao-pesquisa{
+      position: initial;
+      margin-top: 2em;
+      transform: translateX(3em);
+    }
+  }
+}
