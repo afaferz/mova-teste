@@ -45,8 +45,6 @@
 </template>
 
 <script>
-// import OpenIndicator from './OpenIndicator';
-// import getCountry from '@/services/requisicoes'
 import SUB_OPTIONS from '@/services/opcoesFiltro'
 const $axios = require('axios');
 
@@ -109,15 +107,18 @@ export default {
 
   watch: {
     opcaoInput1(){
-      if(this.$route.params.regiao){
-        this.opcaoInput2 = this.opcaoInput1.subOptions.find((elemento)=>{
-            elemento.valor == this.$route.params.regiao;
 
-            return elemento;
-          });
+      if(this.$route.params.regiao){
+        const params = this.$route.params.regiao.toLowerCase();
+
+        const _SUB_OPTIONS = this.opcaoInput1.subOptions.find(elemento=>{
+          return elemento.valor == params;
+        });
+  
+        this.opcaoInput2 = _SUB_OPTIONS;
       }
       else{
-        this.opcaoInput2 =  {opcao: '', valor: ''};
+        this.opcaoInput2 =  {opcao: 'A', valor: ''};
       }
     }
   },
@@ -186,12 +187,12 @@ export default {
   created(){
     this.filtros();
 
-    // if(this.$route.params.regiao){
-    //   const REGIAO = this.filtro.options.find((elemento)=>{
-    //     return elemento.opcao == 'Regiao';
-    //   })
-    //   this.opcaoInput1 = REGIAO;
-    // }
+    if(this.$route.params.regiao){
+      const REGIAO = this.filtro.options.find((elemento)=>{
+        return elemento.opcao == 'Regiao';
+      })
+      this.opcaoInput1 = REGIAO;
+    }
   }
 }
 </script>

@@ -13,7 +13,7 @@
             <strong>Capital:</strong> <span>{{ PAIS.capital }}</span>
           </li>
           <li>
-            <strong>Regiao:</strong> <router-link :to="{ name: 'Home', params: {regiao: PAIS.region.toLowerCase() }}">{{ PAIS.region }}</router-link>
+            <strong>Regiao:</strong> <router-link :to="{ name: 'Home', params: {regiao: PAIS.region }}">{{ PAIS.region }}</router-link>
           </li>
           <li>
             <strong>Sub-região:</strong> <span>{{ PAIS.subregion }}</span>
@@ -41,7 +41,7 @@
           v-for="(vizinho,index) in paginacaoVizinhos" 
           :key="index"     
         >
-          <router-link :to="{ name: 'País', params: { pais: vizinho.codigo.toLowerCase()}}">
+          <router-link :to="{ name: 'País', params: { pais: vizinho.codigo.toLowerCase() }}">
             <img :src="vizinho.flag" />
           </router-link>
         </div>
@@ -90,12 +90,6 @@ export default {
       return this.vizinhos.slice(primeiroElemento, segundoElemento);
     }
   },
-
-  // watch: {
-  //   '$route.params.pais'(){
-  //     this.getPais();
-  //   }
-  // },
 
   methods: {
     getPais(){
