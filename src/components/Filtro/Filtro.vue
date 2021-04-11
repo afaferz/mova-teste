@@ -109,7 +109,16 @@ export default {
 
   watch: {
     opcaoInput1(){
-      this.opcaoInput2 =  {opcao: '', valor: ''};
+      if(this.$route.params.regiao){
+        this.opcaoInput2 = this.opcaoInput1.subOptions.find((elemento)=>{
+            elemento.valor == this.$route.params.regiao;
+
+            return elemento;
+          });
+      }
+      else{
+        this.opcaoInput2 =  {opcao: '', valor: ''};
+      }
     }
   },
 
@@ -162,15 +171,9 @@ export default {
 
         if(this.$route.params.regiao){
           
-          const _REGIAO= this.filtro.options.find((elemento)=>{
+          const _REGIAO = this.filtro.options.find((elemento)=>{
             return elemento.opcao == 'Regiao';
           });
-
-          // const _SUB_OPTIONS =_REGIAO.subOptions.find((elemento)=>{
-          //   elemento.valor == this.$route.params.regiao;
-
-          //   return elemento;
-          // });
 
           this.opcaoInput1 = _REGIAO;
         }
