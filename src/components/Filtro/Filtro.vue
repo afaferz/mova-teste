@@ -18,9 +18,7 @@
         v-tooltip.bottom="{ 
           content: tooltipConfig.msg, 
           classes: 'tooltip',
-          trigger: 'manual',
           show: tooltipConfig.isOpen,
-          delay: {show: 0, hide: 100},
           autoHide: true,
           
         }"
@@ -77,7 +75,7 @@ export default {
 
     tooltipConfig: {
       isOpen: false,
-      msg: 'Por favor, este campo deve estar preenchido filho da puta',
+      msg: 'Por favor, este campo deve estar preenchido!',
     },
 
     // Seleção filtro 1
@@ -149,12 +147,10 @@ export default {
     selecionarOpcao(){
 
       if(!this.opcaoInput2.valor){
-       
         return this.tooltipConfig.isOpen = true; 
       }
       else{
         
-
         const selecionadas = {
           opcao1 : this.opcaoInput1.valor,
           opcao2: this.opcaoInput2.valor,
