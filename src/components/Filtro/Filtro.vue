@@ -76,7 +76,7 @@ export default {
         {
           opcao: 'Língua', 
           valor: 'lang', 
-          subOptions: SUB_OPTIONS.Lingua,
+          subOptions: null
         },
         {
           opcao: 'País', 
@@ -114,10 +114,8 @@ export default {
         const _SUB_OPTIONS = this.opcaoInput1.subOptions.find(elemento=>{
           return elemento.valor == params;
         });
-        console.log(this.opcaoInput1)
   
         this.opcaoInput2 = _SUB_OPTIONS;
-        this.opcaoInput1.subOptions = SUB_OPTIONS.Regiao;
       }
       else{
         this.opcaoInput2 =  {opcao: '', valor: ''};
@@ -154,15 +152,30 @@ export default {
 
         // Default
         if(!this.$route.params.regiao){
-          this.opcaoInput1.subOptions  = data.map(pais=>{
+          this.opcaoInput1.subOptions = data.map(pais=>{
             return {opcao: pais.name, valor: pais.alpha3Code};
           })
         }
         
         // Capital
         this.filtro.options[1].subOptions = data.map(pais=>{
-          return {opcao: pais.capital, valor: pais.capital};
+          return {opcao: `${pais.capital} - ${pais.alpha3Code}`, valor: pais.capital};
         })
+
+
+        let LINGUAS = data.map((pais)=>{
+          
+          const opcao = pais.languages[0].name;
+          const valor = pais.languages[0].iso639_1;
+
+          let teste = { opcao, valor};
+
+          return teste
+        });
+
+        this.filtro.options[2].subOptions = LINGUAS.filter(function (array) {
+            return !this[JSON.stringify(array)] && (this[JSON.stringify(array)] = true);
+        }, Object.create(null));
 
         //País
         this.filtro.options[3].subOptions = data.map(pais=>{
@@ -179,7 +192,7 @@ export default {
           const _REGIAO = this.filtro.options.find((elemento)=>{
             return elemento.opcao == 'Regiao';
           });
-          console.log(_REGIAO)
+
           this.opcaoInput1 = _REGIAO;
         }
       })
