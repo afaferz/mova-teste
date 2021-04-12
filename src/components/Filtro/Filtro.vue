@@ -14,7 +14,16 @@
         </template>
       </v-select>
   
-      <v-select 
+      <v-select
+        v-tooltip.bottom="{ 
+          content: tooltipConfig.msg, 
+          classes: 'tooltip',
+          trigger: 'manual',
+          show: tooltipConfig.isOpen,
+          delay: {show: 0, hide: 100},
+          autoHide: true,
+          
+        }"
         label="opcao" 
         v-show="opcaoInput1.valor"
         class="input-filtro"
@@ -48,6 +57,13 @@
 import SUB_OPTIONS from '@/services/opcoesFiltro'
 const $axios = require('axios');
 
+import Vue from 'vue'
+import { VTooltip, VPopover, VClosePopover } from 'v-tooltip'
+
+Vue.directive('tooltip', VTooltip)
+Vue.directive('close-popover', VClosePopover)
+Vue.component('v-popover', VPopover)
+
 export default {
   name: 'Filtro',
 
@@ -57,6 +73,11 @@ export default {
     },
     OpenIndicator: {
       render: createElement => createElement('span', '▼', {class: {'toggle': true}}),
+    },
+
+    tooltipConfig: {
+      isOpen: false,
+      msg: 'Por favor, este campo deve estar preenchido filho da puta',
     },
 
     // Seleção filtro 1
@@ -105,6 +126,7 @@ export default {
     BuscarRegiao: null,
   },
 
+
   watch: {
     opcaoInput1(){
 
@@ -120,17 +142,18 @@ export default {
       else{
         this.opcaoInput2 =  {opcao: '', valor: ''};
       }
-    }
+    },
   },
 
   methods: {
     selecionarOpcao(){
 
       if(!this.opcaoInput2.valor){
-       console.log('Preencha este campo');
-       return
+       
+        return this.tooltipConfig.isOpen = true; 
       }
       else{
+        
 
         const selecionadas = {
           opcao1 : this.opcaoInput1.valor,

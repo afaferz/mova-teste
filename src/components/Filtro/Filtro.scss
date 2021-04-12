@@ -55,6 +55,21 @@
   }
 }
 
+.tooltip {
+  display: block !important;
+  z-index: 10;
+  margin-top: 10px;
+
+  .tooltip-inner {
+    background: #6D2080;
+    color: white;
+    line-height: 1.5em;
+    border-radius: 5px;
+    word-wrap: normal;
+    padding: .5em;
+  }
+}
+
 @media screen and (max-width: 600px) {
   .filtro-container{
     flex-direction: column;
